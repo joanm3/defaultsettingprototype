@@ -3,11 +3,11 @@ using System.Collections;
 
 public class MakeRainCube : MonoBehaviour {
 
-    public int sumValue = 5;
+    public int sumValue = 1;
     public int min =0;
     public int max = 10;
     ParticleSystem particles; 
-    CapsuleCollider playerCollider;
+    public CapsuleCollider playerCollider;
 
     void Start()
     {
@@ -24,11 +24,11 @@ public class MakeRainCube : MonoBehaviour {
     {
         if (other == playerCollider)
         {
-            if (Input.GetKeyDown(KeyCode.Q))
+            if (Input.GetKey(KeyCode.R))
             {
                 particles.emissionRate += sumValue; 
             }
-            else if (Input.GetKeyDown(KeyCode.R))
+            else if (Input.GetKey(KeyCode.Q))
             {
                 particles.emissionRate -= sumValue;
 

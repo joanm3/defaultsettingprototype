@@ -7,6 +7,7 @@ public class changeSizeButton : MonoBehaviour
     public float sumValue = 0.1f;
     public float min = 0.1f;
     public float max = 2f;
+    public Transform objectToScale;
     CapsuleCollider playerCollider;
 
     void Start()
@@ -21,15 +22,24 @@ public class changeSizeButton : MonoBehaviour
 
     void OnTriggerStay(Collider other)
     {
+
+        Transform _transform = (objectToScale != null) ? objectToScale: this.transform; 
+
         if (other == playerCollider)
         {
-            if (Input.GetKeyDown(KeyCode.Q))
+            if (Input.GetKey(KeyCode.R))
             {
-                transform.localScale += new Vector3(sumValue, sumValue, sumValue);
+                if (_transform.localScale.x > max)
+                    _transform.localScale = new Vector3(max, max, max);
+                else
+                    _transform.localScale += new Vector3(sumValue, sumValue, sumValue);
             }
-            else if (Input.GetKeyDown(KeyCode.R))
+            else if (Input.GetKey(KeyCode.Q))
             {
-                transform.localScale -= new Vector3(sumValue, sumValue, sumValue);
+                if (_transform.localScale.x < min)
+                    _transform.localScale = new Vector3(min, min, min);
+                else
+                    _transform.localScale -= new Vector3(sumValue, sumValue, sumValue);
             }
         }
 
